@@ -1,7 +1,7 @@
 import * as React from 'react';
 //import all necessary libraries here, e.g., Material-UI Typography, as follows
 import Typography from '@mui/material/Typography';
-import { Radio, FormControl, FormLabel, RadioGroup, FormControlLabel } from '@mui/material';
+import { Radio, FormControl, RadioGroup, FormControlLabel } from '@mui/material';
 
 const ReviewRating = ({handleRatingSelection, errorMessage, selectedRating}) => {
 

@@ -1,18 +1,17 @@
 import * as React from 'react';
 //import all necessary libraries here, e.g., Material-UI Typography, as follows
-import Typography from '@mui/material/Typography';
+import { TextField } from '@mui/material';
 
-const ReviewBody = () => {
 
-  //states declarations
-  //constants and functions declarations
+const ReviewBody = ({handleReviewSelection, errorMessage, enteredReview}) => {
 
+  const handleSelectChange = (event) => {
+    handleReviewSelection(event.target.value);
+  };
   return (
     <>
-    
-    {/* JSX block */}
-
-
+      <TextField multiline rows={4}id="movieDescription" label="Movie Review" variant="outlined"  sx={{ width: '50%',  marginBottom: "30px"}} onChange={handleSelectChange} value={enteredReview} inputProps={{ maxLength: 200 }}/>
+      {errorMessage && <p style = {{color: "red", marginTop: "-25px"}}>Enter your review</p>}
     </>
   );
 }

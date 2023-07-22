@@ -40,6 +40,39 @@ app.post('/api/loadUserSettings', (req, res) => {
 	connection.end();
 });
 
+// api endpoint to retrieve the movies
+app.post('/api/getMovies', (req,res) =>{
+	let connection = mysql.createConnection(config);
+	let sql = 'SELECT * FROM v3su.movies;';
+	// execute the sql query
+	connection.query(sql, (error, results, fields) => {
+		if (error) {
+			return console.error(error.message);
+		}
+		res.send({ movies: results });
+		connection.end();
+	});
+});
+
+// write the movie to the db
+app.post('/api/addReview', (req, res) => {
+	const {userID, movieID, Title, Review, Rating} = req.body;
+	const sql = 'INSERT INTO v3su.Review (reviewTitle, reviewContent, reviewScore, MovieID, userID) VALUES (?, ?, ?, ?, ?);'
+	const data = [Title, Review, Rating, movieID, userID];
+  
+	const connection = mysql.createConnection(config);
+  
+	connection.query(sql, data, (error) => {
+	  if (error) {
+		console.error(error.message);
+	  } else {
+		res.send('Review added successfully');
+	  }
+	  connection.end();
+	});
+  });
+  
+
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`)); //for the dev version

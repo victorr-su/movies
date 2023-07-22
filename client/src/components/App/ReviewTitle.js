@@ -1,18 +1,17 @@
 import * as React from 'react';
 //import all necessary libraries here, e.g., Material-UI Typography, as follows
 import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
 
-const ReviewTitle = () => {
-
-  //states declarations
-  //constants and functions declarations
-
+const ReviewTitle = ({handleTitleSelection, errorMessage, enteredTitle}) => {
+  
+  const handleSelectChange = (event) => {
+    handleTitleSelection(event.target.value);
+  };
   return (
     <>
-    
-    {/* JSX block */}
-
-
+      <TextField id="Title" label="Title" variant="outlined"  sx={{ width: '50%', marginBottom: "30px" }} onChange={handleSelectChange} value={enteredTitle}/>
+      {errorMessage && <p style = {{color: "red", marginTop: "-25px"}}>Enter your review title </p>}
     </>
   );
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 //import all necessary libraries here, e.g., Material-UI Typography, as follows
 import Typography from '@mui/material/Typography';
-import { Select, MenuItem, FormControl, InputLabel, Input } from '@mui/material';
+import { Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 
 
 const MovieSelection = ({movies, handleMovieSelection, errorMessage, selectedMovie}) => {

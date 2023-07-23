@@ -23,13 +23,13 @@ const App = () => {
               <Button color="inherit">Landing</Button>
             </Link>
             <Link to="/Search">
-            <Button color="inherit">Search</Button>
+              <Button color="inherit">Search</Button>
             </Link>
             <Link to="/Review">
               <Button color="inherit">Review</Button>
             </Link>
             <Link to="/MyPage">
-            <Button color="inherit">MyPage</Button>
+              <Button color="inherit">MyPage</Button>
             </Link>
           </div>
         </AppBar>

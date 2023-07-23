@@ -71,6 +71,48 @@ app.post('/api/addReview', (req, res) => {
 	  connection.end();
 	});
   });
+
+app.post('/api/search', (req, res) => {
+	const connection = mysql.createConnection(config);
+	const { movieTitle, actorName, directorName } = req.body;
+	let sql = 'SELECT M.name AS movieTitle, ' +
+			  'GROUP_CONCAT(DISTINCT CONCAT(D.first_name, " ", D.last_name)) AS directorNames, ' +
+			  'GROUP_CONCAT(DISTINCT R.reviewContent) AS reviews, AVG(R.reviewScore) AS avgReviewScore ' +
+			  'FROM movies M ' +
+			  'LEFT JOIN movies_directors MD ON M.id = MD.movie_id ' +
+			  'LEFT JOIN directors D ON MD.director_id = D.id ' +
+			  'LEFT JOIN roles RA ON M.id = RA.movie_id ' +
+			  'LEFT JOIN actors A ON RA.actor_id = A.id ' +
+			  'LEFT JOIN Review R ON M.id = R.movieID ' +
+			  'WHERE 1 ';
+  
+	const values = [];
+  
+	if (movieTitle) {
+	  sql += 'AND M.id IN (SELECT id FROM movies WHERE name = ?) ';
+	  values.push(movieTitle);
+	}
+  
+	if (actorName) {
+	  sql += 'AND CONCAT(A.first_name, " ", A.last_name) = ? ';
+	  values.push(actorName);
+	}
+  
+	if (directorName) {
+	  sql += 'AND CONCAT(D.first_name, " ", D.last_name) = ? ';
+	  values.push(directorName);
+	}
+  
+	sql += 'GROUP BY M.name';
+	connection.query(sql, values, (error, results) =>{
+		if(error){
+			console.error(error.message);
+		}else{
+			res.send(results)
+		}
+		connection.end();
+	})
+})
   
 
 

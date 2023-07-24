@@ -58,7 +58,13 @@ const Search = () => {
             </Button>
           </Grid>
           <Grid item xs={12}>
-            {JSON.stringify(searchResults)}
+            {searchResults?.map((result)=>{
+              return(
+              <Typography variant = 'h6' sx = {{marginBottom: '15px'}}>
+                {JSON.stringify(result)}
+              </Typography>
+              )
+            })}
           </Grid>
         </Grid>
     </Container>

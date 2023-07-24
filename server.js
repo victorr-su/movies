@@ -72,6 +72,7 @@ app.post('/api/addReview', (req, res) => {
 	});
   });
 
+// search api end point
 app.post('/api/search', (req, res) => {
 	const connection = mysql.createConnection(config);
 	const { movieTitle, actorName, directorName } = req.body;

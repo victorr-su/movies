@@ -1,9 +1,9 @@
 import React from 'react';
-import { AppBar, Button } from '@mui/material';
+import { AppBar, Button, Typography } from '@mui/material';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Review from '../Review';
 import Landing from '../Landing';
-import MyPage from '../MyPage/index';
+import MyPage from '../MovieTrailers/index';
 import Search from '../Search/index';
 
 const App = () => {
@@ -15,13 +15,13 @@ const App = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/Review" element={<Review />} />
           <Route path="/Search" element={<Search />} />
-          <Route path="/MyPage" element={<MyPage />} />
+          <Route path="/MovieTrailer" element={<MyPage />} />
         </Routes>
 
-        <AppBar sx={{ marginBottom: '50px', display: 'flex' }}>
-          <div style={{ display: 'flex' }}>
+        <AppBar sx={{ marginBottom: '50px', display: 'flex'}}>
+          <div style={{ display: 'flex'}}>
             <Link to="/">
-              <Button color="inherit" style={{ color: location.pathname === '/' ? 'black' : 'inherit' }} disabled={location.pathname === '/'}>
+              <Button color="inherit" style={{ color: location.pathname === '/' ? 'black' : 'inherit' }} disabled={location.pathname === '/'} className = "Landing">
                 Landing
               </Button>
             </Link>
@@ -38,11 +38,12 @@ const App = () => {
               </Button>
             </Link>
 
-            <Link to="/MyPage">
-              <Button color="inherit" style={{ color: location.pathname === '/MyPage' ? 'black' : 'inherit' }} disabled={location.pathname === '/MyPage'}>
-                MyPage
+            <Link to="/MovieTrailer">
+              <Button color="inherit" style={{ color: location.pathname === '/MovieTrailer' ? 'black' : 'inherit' }} disabled={location.pathname === '/MovieTrailer'}>
+                Movie Trailer
               </Button>
             </Link>
+              <Typography sx = {{display:'flex', alignItems: 'center', marginLeft:'50px'}}>You are on page: {location.pathname === '/' ? 'Landing' : location.pathname.substring(1, location.pathname.length)}</Typography>
           </div>
         </AppBar>
       </div>

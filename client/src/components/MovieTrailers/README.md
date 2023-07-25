@@ -12,4 +12,8 @@
 
 • The user can then rate the movie trailer on a scale of 1-5 and it's saved in the db
 
-Eg. Searching '12 Angry Men' will show a link for the user to click on, which will lead them to the movie trailer
+• If there are no movie trailers for your given movie, and error message will pop up saying that there are no movie trailers
+
+• If there is no search term, you will also get an error message
+
+Eg. Searching '12 Angry Men' or 'Leonard Part 6' will show a link for the user to click on, which will lead them to the movie trailer

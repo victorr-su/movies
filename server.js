@@ -122,7 +122,7 @@ app.post('/api/trailer', (req,res)=>{
 	let sql = 'SELECT MT.trailer_link as link FROM movie_trailers MT ' +
 	'LEFT JOIN movies M ON M.id = MT.movie_ID ' +
 	'WHERE M.id IN (SELECT id FROM movies WHERE name LIKE ?)';
-	let values = [movieTitle];
+	let values = [movieTitle ];
 
 	connection.query(sql, values, (error, results) =>{
 		if(error){

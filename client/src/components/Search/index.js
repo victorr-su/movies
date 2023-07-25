@@ -7,7 +7,8 @@ const Search = () => {
   const [actorName, setActorName] = React.useState();
   const [directorName, setDirectorName] = React.useState();
   const [searchResults, setSearchResults] = React.useState();
-
+  const [errorMessage, setErrorMessage] = React.useState(false);
+  
   const handleSubmit = async () =>{
     try {
       const response = await fetch('/api/search', {
@@ -18,8 +19,12 @@ const Search = () => {
         body: JSON.stringify({ movieTitle, actorName, directorName })
       });
       const data = await response.json();
-      console.log(data)
-      setSearchResults(data);
+      if(data.length === 0){
+        setErrorMessage(true);
+      }else{
+        setErrorMessage(false);
+        setSearchResults(data);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -72,6 +77,7 @@ const Search = () => {
               ))}
             </div>
           ))}
+            <Typography sx = {{display: !errorMessage ? 'none' : 'block', color: 'red'}}>No movies match your search result</Typography>
           </Grid>
 
         </Grid>

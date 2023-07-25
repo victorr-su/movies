@@ -21,29 +21,29 @@ const App = () => {
         <AppBar sx={{ marginBottom: '50px', display: 'flex'}}>
           <div style={{ display: 'flex'}}>
             <Link to="/">
-              <Button color="inherit" style={{ color: location.pathname === '/' ? 'black' : 'inherit' }} disabled={location.pathname === '/'} className = "Landing">
+              <Button color="inherit" style={{ color: location.pathname === '/' ? 'black' : 'white' }} disabled={location.pathname === '/'} className = "Landing">
                 Landing
               </Button>
             </Link>
 
             <Link to="/Search">
-              <Button color="inherit" style={{ color: location.pathname === '/Search' ? 'black' : 'inherit' }} disabled={location.pathname === '/Search'}>
+              <Button color="inherit" style={{ color: location.pathname === '/Search' ? 'black' : 'white' }} disabled={location.pathname === '/Search'}>
                 Search
               </Button>
             </Link>
 
             <Link to="/Review">
-              <Button color="inherit" style={{ color: location.pathname === '/Review' ? 'black' : 'inherit' }} disabled={location.pathname === '/Review'}>
+              <Button color="inherit" style={{ color: location.pathname === '/Review' ? 'black' : 'white' }} disabled={location.pathname === '/Review'}>
                 Review
               </Button>
             </Link>
 
             <Link to="/MovieTrailer">
-              <Button color="inherit" style={{ color: location.pathname === '/MovieTrailer' ? 'black' : 'inherit' }} disabled={location.pathname === '/MovieTrailer'}>
+              <Button color="inherit" style={{ color: location.pathname === '/MovieTrailer' ? 'black' : 'white' }} disabled={location.pathname === '/MovieTrailer'}>
                 Movie Trailer
               </Button>
             </Link>
-              <Typography sx = {{display:'flex', alignItems: 'center', marginLeft:'50px'}}>You are on page: {location.pathname === '/' ? 'Landing' : location.pathname.substring(1, location.pathname.length)}</Typography>
+              <Typography sx = {{display:'flex', alignItems: 'center', marginLeft:'50px', color: 'white'}}>You are on page: {location.pathname === '/' ? 'Landing' : location.pathname.substring(1, location.pathname.length)}</Typography>
           </div>
         </AppBar>
       </div>

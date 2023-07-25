@@ -49,6 +49,7 @@ const MyPage = () => {
           fullWidth
           label="Movie Title"
           name="field1"
+          value={movieTitle}
           onChange={(e)=> setMovieTitle(e.target.value)}
         />
       </Grid>

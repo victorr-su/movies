@@ -90,18 +90,18 @@ app.post('/api/search', (req, res) => {
 	const values = [];
   
 	if (movieTitle) {
-	  sql += 'AND M.id IN (SELECT id FROM movies WHERE name = ?) ';
-	  values.push(movieTitle);
+	  sql += 'AND M.id IN (SELECT id FROM movies WHERE name LIKE ?) ';
+	  values.push('%' + movieTitle + '%');
 	}
   
 	if (actorName) {
-	  sql += 'AND CONCAT(A.first_name, " ", A.last_name) = ? ';
-	  values.push(actorName);
+	  sql += 'AND CONCAT(A.first_name, " ", A.last_name) LIKE ? ';
+	  values.push('%' + actorName + '%');
 	}
   
 	if (directorName) {
-	  sql += 'AND CONCAT(D.first_name, " ", D.last_name) = ? ';
-	  values.push(directorName);
+	  sql += 'AND CONCAT(D.first_name, " ", D.last_name) LIKE ? ';
+	  values.push('%' + directorName + '%');
 	}
   
 	sql += 'GROUP BY M.name';
@@ -113,6 +113,25 @@ app.post('/api/search', (req, res) => {
 		}
 		connection.end();
 	})
+})
+
+// movie trailer Api endpoint
+app.post('/api/trailer', (req,res)=>{
+	const connection = mysql.createConnection(config);
+	const { movieTitle } = req.body;
+	let sql = 'SELECT MT.trailer_link as link FROM movie_trailers MT ' +
+	'LEFT JOIN movies M ON M.id = MT.movie_ID ' +
+	'WHERE M.id IN (SELECT id FROM movies WHERE name LIKE ?)';
+	let values = [movieTitle];
+
+	connection.query(sql, values, (error, results) =>{
+		if(error){
+			console.log(error);
+		}else{
+			res.send(results)
+		}
+	})
+
 })
   
 

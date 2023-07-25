@@ -28,6 +28,7 @@ const Search = () => {
     <Container maxWidth="sm" sx = {{marginTop: '100px'}}>
         <Typography variant='h3' sx ={{marginBottom: '30px'}}> Search </Typography>
         <Grid container spacing={2}>
+          
           <Grid item xs={12}>
             <TextField
               fullWidth
@@ -36,6 +37,7 @@ const Search = () => {
               onChange={(e)=> setMovieTitle(e.target.value)}
             />
           </Grid>
+
           <Grid item xs={12}>
             <TextField
               fullWidth
@@ -44,6 +46,7 @@ const Search = () => {
               onChange={(e)=> setActorName(e.target.value)}
             />
           </Grid>
+
           <Grid item xs={12}>
             <TextField
               fullWidth
@@ -52,11 +55,13 @@ const Search = () => {
               onChange={(e)=>setDirectorName(e.target.value)}
             />
           </Grid>
+
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary" onClick = {handleSubmit}>
               Search
             </Button>
           </Grid>
+
           <Grid item xs={12}>
           {searchResults?.map((result, index) => (
             <div key={index} style={{ marginBottom: '20px' }}>
@@ -68,6 +73,7 @@ const Search = () => {
             </div>
           ))}
           </Grid>
+
         </Grid>
     </Container>
   );

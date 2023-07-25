@@ -77,15 +77,15 @@ app.post('/api/search', (req, res) => {
 	const connection = mysql.createConnection(config);
 	const { movieTitle, actorName, directorName } = req.body;
 	let sql = 'SELECT M.name AS movieTitle, ' +
-			  'GROUP_CONCAT(DISTINCT CONCAT(D.first_name, " ", D.last_name)) AS directorNames, ' +
-			  'GROUP_CONCAT(DISTINCT R.reviewContent) AS reviews, AVG(R.reviewScore) AS avgReviewScore ' +
-			  'FROM movies M ' +
-			  'LEFT JOIN movies_directors MD ON M.id = MD.movie_id ' +
-			  'LEFT JOIN directors D ON MD.director_id = D.id ' +
-			  'LEFT JOIN roles RA ON M.id = RA.movie_id ' +
-			  'LEFT JOIN actors A ON RA.actor_id = A.id ' +
-			  'LEFT JOIN Review R ON M.id = R.movieID ' +
-			  'WHERE 1 ';
+	'GROUP_CONCAT(DISTINCT CONCAT(D.first_name, " ", D.last_name) SEPARATOR ", ") AS directorNames, ' +
+	'GROUP_CONCAT(DISTINCT R.reviewContent SEPARATOR ", ") AS reviews, AVG(R.reviewScore) AS avgReviewScore ' +
+	'FROM movies M ' +
+	'LEFT JOIN movies_directors MD ON M.id = MD.movie_id ' +
+	'LEFT JOIN directors D ON MD.director_id = D.id ' +
+	'LEFT JOIN roles RA ON M.id = RA.movie_id ' +
+	'LEFT JOIN actors A ON RA.actor_id = A.id ' +
+	'LEFT JOIN Review R ON M.id = R.movieID ' +
+	'WHERE 1 ';  
   
 	const values = [];
   

@@ -54,17 +54,19 @@ const Search = () => {
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary" onClick = {handleSubmit}>
-              Submit
+              Search
             </Button>
           </Grid>
           <Grid item xs={12}>
-            {searchResults?.map((result)=>{
-              return(
-              <Typography variant = 'h6' sx = {{marginBottom: '15px'}}>
-                {JSON.stringify(result)}
-              </Typography>
-              )
-            })}
+          {searchResults?.map((result, index) => (
+            <div key={index} style={{ marginBottom: '20px' }}>
+              {Object.entries(result).map(([key, value], dataIndex) => (
+                <Typography key={dataIndex} variant="body1">
+                  {key}: {value === null ? 'none' : value}
+                </Typography>
+              ))}
+            </div>
+          ))}
           </Grid>
         </Grid>
     </Container>

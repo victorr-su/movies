@@ -1,14 +1,15 @@
-import * as React from 'react';
+import React from 'react';
+import { AppBar, Button } from '@mui/material';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Review from '../Review';
 import Landing from '../Landing';
-import { AppBar, Button } from '@mui/material';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import  MyPage  from '../MyPage/index';
-import  Search  from '../Search/index';
+import MyPage from '../MyPage/index';
+import Search from '../Search/index';
 
 const App = () => {
+  const location = useLocation();
+
   return (
-    <Router>
       <div>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -17,24 +18,34 @@ const App = () => {
           <Route path="/MyPage" element={<MyPage />} />
         </Routes>
 
-        <AppBar sx={{ marginBottom: '50px' }}>
+        <AppBar sx={{ marginBottom: '50px', display: 'flex' }}>
           <div style={{ display: 'flex' }}>
             <Link to="/">
-              <Button color="inherit">Landing</Button>
+              <Button color="inherit" style={{ color: location.pathname === '/' ? 'black' : 'inherit' }} disabled={location.pathname === '/'}>
+                Landing
+              </Button>
             </Link>
+
             <Link to="/Search">
-              <Button color="inherit">Search</Button>
+              <Button color="inherit" style={{ color: location.pathname === '/Search' ? 'black' : 'inherit' }} disabled={location.pathname === '/Search'}>
+                Search
+              </Button>
             </Link>
+
             <Link to="/Review">
-              <Button color="inherit">Review</Button>
+              <Button color="inherit" style={{ color: location.pathname === '/Review' ? 'black' : 'inherit' }} disabled={location.pathname === '/Review'}>
+                Review
+              </Button>
             </Link>
+
             <Link to="/MyPage">
-              <Button color="inherit">MyPage</Button>
+              <Button color="inherit" style={{ color: location.pathname === '/MyPage' ? 'black' : 'inherit' }} disabled={location.pathname === '/MyPage'}>
+                MyPage
+              </Button>
             </Link>
           </div>
         </AppBar>
       </div>
-    </Router>
   );
 };
 

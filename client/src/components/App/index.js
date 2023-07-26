@@ -22,25 +22,25 @@ const App = () => {
         <Toolbar>
           <Box display="flex" flexGrow={1}>
             <Link to="/">
-              <Button color="inherit" component="div" sx={{ color: location.pathname === '/' ? 'black' : 'white', flexGrow: 1 }}>
+              <Button color="inherit" component="div" sx={{ color: location.pathname === '/' ? 'black' : 'white', flexGrow: 1 }} disabled = {location.pathname === '/' ? true : false}>
                 Landing
               </Button>
             </Link>
 
             <Link to="/Search">
-              <Button color="inherit" component="div" sx={{ color: location.pathname === '/Search' ? 'black' : 'white', flexGrow: 1 }}>
+              <Button color="inherit" component="div" sx={{ color: location.pathname === '/Search' ? 'black' : 'white', flexGrow: 1 }}disabled = {location.pathname === '/Search' ? true : false}>
                 Search
               </Button>
             </Link>
 
             <Link to="/Review">
-              <Button color="inherit" component="div" sx={{ color: location.pathname === '/Review' ? 'black' : 'white', flexGrow: 1 }}>
+              <Button color="inherit" component="div" sx={{ color: location.pathname === '/Review' ? 'black' : 'white', flexGrow: 1 }} disabled = {location.pathname === '/Review' ? true : false}>
                 Review
               </Button>
             </Link>
 
             <Link to="/MovieTrailer">
-              <Button color="inherit" component="div" sx={{ color: location.pathname === '/MovieTrailer' ? 'black' : 'white', flexGrow: 1 }}>
+              <Button color="inherit" component="div" sx={{ color: location.pathname === '/MovieTrailer' ? 'black' : 'white', flexGrow: 1 }} disabled = {location.pathname === '/MovieTrailer' ? true : false}>
                 Movie Trailer
               </Button>
             </Link>

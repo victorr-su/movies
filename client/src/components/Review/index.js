@@ -5,7 +5,7 @@ import ReviewRating from './ReviewRating';
 import MovieSelection from './MovieSelection';
 //import all necessary libraries here, e.g., Material-UI Typography, as follows
 import Typography from '@mui/material/Typography';
-import { Grid, Button } from '@mui/material';
+import { Grid, Button, Box, Paper } from '@mui/material';
 
 const Review = () => { 
 
@@ -147,45 +147,48 @@ const Review = () => {
 
   return (
     <>
-    <Grid container   
-    direction="column"
-    alignItems="center"
-    justifyContent="center">
+      <Grid container direction="column" alignItems="center" justifyContent="center">
+        <Typography variant="h3" align="center" sx={{ marginBottom: '20px', marginTop: '100px' }}>
+          Review a Movie
+        </Typography>
+        <MovieSelection errorMessage={selectedMovieError} movies={movies} movieID={movieID} handleMovieSelection={handleMovieSelection} selectedMovie={selectedMovie} />
 
-      <Typography variant="h3" align="center" sx={{ marginBottom: '20px', marginTop: '100px' }}>
-        Review a movie
-      </Typography>
-      <MovieSelection errorMessage={selectedMovieError} movies={movies} movieID={movieID} handleMovieSelection={handleMovieSelection} selectedMovie={selectedMovie}/>
+        <Typography variant="h5" align="center" sx={{ marginBottom: '20px' }}>
+          Add a New Review
+        </Typography>
 
-      <Typography variant="h5" align="center" sx={{ marginBottom: '20px' }}>
-        Add a New Review
-      </Typography>
+        <ReviewTitle errorMessage={enteredTitleError} handleTitleSelection={handleTitleSelection} enteredTitle={enteredTitle} />
+        <ReviewBody errorMessage={enteredReviewError} handleReviewSelection={handleReviewSelection} enteredReview={enteredReview} />
+        <ReviewRating errorMessage={selectedRatingError} handleRatingSelection={handleRatingSelection} selectedRating={selectedRating} />
 
-      <ReviewTitle errorMessage = {enteredTitleError} handleTitleSelection={handleTitleSelection} enteredTitle={enteredTitle}/>
-      <ReviewBody errorMessage = {enteredReviewError} handleReviewSelection={handleReviewSelection} enteredReview={enteredReview}/>
-      <ReviewRating errorMessage = {selectedRatingError} handleRatingSelection={handleRatingSelection} selectedRating={selectedRating}/>
+        <Button variant="contained" onClick={submitButtonClick} sx={{ marginBottom: '20px' }}>
+          Submit
+        </Button>
 
-     <Button variant="outlined" onClick = {submitButtonClick} sx = {{marginBottom: '20px'}}>Submit</Button>
+        {displayConfirmationMessage && (
+          <Typography variant="p" sx={{ color: 'blue' }}>
+            Your Review Has Been Received
+          </Typography>
+        )}
 
-     {displayConfirmationMessage && <Typography variant="p" sx={{ color: "blue" }}>Your Review Has Been Recieved</Typography>}
-
-     <Typography variant="h4" align="center" sx={{ marginBottom: '20px', marginTop: '50px' }}>Current Movie Rating</Typography>
-     {displayMovies && 
-
-      Object.entries(onPageReview).map(([key, value])=>{
-        return(
-          <Grid container direction="column" alignItems="center" justifyContent="center" marginBottom="20px" key={key}>
-            <Typography variant="p" sx={{ fontWeight: '600' }}>
-              {`${key}: `}
-            </Typography>
-            <Typography variant="p">
-              {value}
-            </Typography>
-          </Grid>
-        )
-      })
-      }
-     </Grid>
+        <Typography variant="h4" align="center" sx={{ marginBottom: '20px', marginTop: '50px' }}>
+          Current Movie Rating
+        </Typography>
+        {displayMovies &&
+          <Box display="flex" flexDirection="column" alignItems="center">
+            {Object.entries(onPageReview).map(([key, value]) => (
+              <Paper key={key} elevation={3} sx={{ width: '80%', marginBottom: '10px', padding: '10px' }}>
+                <Typography variant="p" sx={{ fontWeight: '600' }}>
+                  {`${key}: `}
+                </Typography>
+                <Typography variant="p">
+                  {value}
+                </Typography>
+              </Paper>
+            ))}
+          </Box>
+        }
+      </Grid>
     </>
   );
 }

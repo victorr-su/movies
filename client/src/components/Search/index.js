@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Button, Grid, Container, Typography } from '@mui/material';
+import { TextField, Button, Grid, Container, Typography, Paper } from '@mui/material';
 
 const Search = () => {
   const [movieTitle, setMovieTitle] = React.useState('');
@@ -82,13 +82,13 @@ const Search = () => {
 
         <Grid item xs={12}>
           {searchResults.map((result, index) => (
-            <div key={index} style={{ marginBottom: '20px' }}>
+            <Paper key={index} elevation={3} sx={{ padding: '15px', marginBottom: '20px' }}>
               {Object.entries(result).map(([key, value], dataIndex) => (
-                <Typography key={dataIndex} variant="body1">
+                <Typography key={dataIndex} variant="body1" sx={{ marginBottom: '5px' }}>
                   {key}: {value === null ? 'none' : value}
                 </Typography>
               ))}
-            </div>
+            </Paper>
           ))}
           <Typography sx={{ display: !errorMessage ? 'none' : 'block', color: 'red' }}>
             No movies match your search result

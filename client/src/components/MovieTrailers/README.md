@@ -16,4 +16,5 @@
 
 • If there is no search term, you will also get an error message
 
-Eg. Searching '12 Angry Men' or 'Leonard Part 6' will show a link for the user to click on, which will lead them to the movie trailer
+Eg. Searching '12 Angry Men' or 'Leonard Part 6' will show movie trailer(s). Leonard part 5 has 2 movie trailers, while 12 angry men has 1 just for testing
+purposes. You are able to browse, serach, and view embedded videos on this page.

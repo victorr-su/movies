@@ -152,7 +152,7 @@ const Review = () => {
     alignItems="center"
     justifyContent="center">
 
-      <Typography variant="h3" align="center" sx={{ marginBottom: '20px', marginTop: '50px' }}>
+      <Typography variant="h3" align="center" sx={{ marginBottom: '20px', marginTop: '100px' }}>
         Review a movie
       </Typography>
       <MovieSelection errorMessage={selectedMovieError} movies={movies} movieID={movieID} handleMovieSelection={handleMovieSelection} selectedMovie={selectedMovie}/>

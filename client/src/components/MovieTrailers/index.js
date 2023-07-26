@@ -3,7 +3,7 @@ import { TextField, Button, Grid, Container, Typography } from '@mui/material';
 
 const MyPage = () => {
   const [movieTitle, setMovieTitle] = React.useState('');
-  const [trailer, setTrailer] = React.useState('');
+  const [trailers, setTrailers] = React.useState('');
   const [noSearchError, setNoSearchError] = React.useState('');
   const [noMovies, setNoMovies] = React.useState('');
   const [currentTrailer, setCurrentTrailer] = React.useState('');
@@ -26,7 +26,7 @@ const MyPage = () => {
           setNoMovies(true)
         }else{
           setNoMovies(false);
-          setTrailer(data[0].link);
+          setTrailers(data);
           setCurrentTrailer(movieTitle);
           setMovieTitle('');
         }
@@ -39,7 +39,6 @@ const MyPage = () => {
     }
   }
 
-  
   return(
   <Container maxWidth="sm" sx = {{marginTop: '100px'}}>
     <Typography variant='h3' sx ={{marginBottom: '30px'}}> Movie Trailers </Typography>
@@ -54,29 +53,29 @@ const MyPage = () => {
         />
       </Grid>
       <Grid item xs={12}>
-      <Button
-      type="submit"
-      variant="contained"
-      color="primary"
-      onClick={handleSubmit}>
-      Search
+
+      <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
+        Search
       </Button>
+
       </Grid>
-      {(trailer && !noMovies && !noSearchError)  &&
-        <>
-          <Grid item xs ={12}>
-            <Typography>Movie Trailer For: {currentTrailer}</Typography>
-            <iframe
-              width="100%"
-              height="400"
-              src= {trailer}
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+      {trailers && !noMovies && !noSearchError && (
+          <Grid container sx={12} style={{ marginTop: '50px' }}>
+            <Typography variant="h5">Movie Trailers For: {currentTrailer}</Typography>
+              {trailers.map((trailer, index) => (
+                <Grid item xs={12} key={index}>
+                    <iframe
+                      width="105%"
+                      height="400"
+                      src={trailer.link}
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                </Grid>
+              ))}
           </Grid>
-        </>
-      }
+      )}
       <Grid item xs={12}>
         <Typography sx = {{display: noSearchError ? 'block' : 'none', color: 'red'}}>Please enter a movie title</Typography>
         <Typography sx = {{display: noMovies? 'block' : 'none', color: 'red'}}>There are no movie trailers for this movie</Typography>

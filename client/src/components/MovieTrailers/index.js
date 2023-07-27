@@ -10,8 +10,6 @@ const MyPage = () => {
   const [addMovieTitle, setAddMovieTitle] = React.useState('');
   const [addMovieLink, setAddMovieLink] = React.useState('');
   const [addTrailerError, setAddTrailerError] = React.useState('');
-  const [confirmationMessage, setConfirmationMessage] = React.useState('');
-  const [addError, setAddError] = React.useState('');
 
   const handleSubmit = async () =>{
     if(movieTitle !== ''){
@@ -48,7 +46,6 @@ const MyPage = () => {
   const handleAddMovieLink = async () =>{
     if(addMovieLink === '' || addMovieTitle === ''){
       setAddTrailerError(true);
-      setAddError(false);
     }else{
       setAddTrailerError(false);
       try{
@@ -59,12 +56,11 @@ const MyPage = () => {
           },
           body: JSON.stringify({ addMovieTitle, addMovieLink })
         })
-        addMovieLink('');
-        addMovieTitle('');
-        setAddError(false);
-        setConfirmationMessage(true);
+        setAddMovieLink('');
+        setAddMovieTitle('');
       }catch(err){
-        setAddError(true);
+        setAddMovieLink('');
+        setAddMovieTitle('');
         console.log(err);
       }
     }
@@ -139,8 +135,6 @@ const MyPage = () => {
           Add Movie Trailer
         </Button>
         <Typography variant='p' sx={{color: 'red', display: addTrailerError ? 'block' : 'none'}}> Please fill out the entire form</Typography>
-        <Typography variant='p' sx={{color: 'blue', display: confirmationMessage ? 'block' : 'none'}}>New movie trailer added.</Typography>
-        <Typography variant='p' sx={{color: 'red', display: addError? 'block' : 'none'}}>There was an error for your request</Typography>
       </Grid>
     </Container>
   );

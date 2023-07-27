@@ -10,16 +10,15 @@
 
 • The user should be able to search my movie name 
 
-• The user can then rate the movie trailer on a scale of 1-5 and it's saved in the db
-
-• If there are no movie trailers for your given movie, and error message will pop up saying that there are no movie trailers
-
 • If there is no search term, you will also get an error message
 
-Eg. Searching '12 Angry Men' or 'Leonard Part 6' will show movie trailer(s). Leonard part 5 has 2 movie trailers, while 12 angry men has 1 just for testing
-purposes. You are able to browse, serach, and view embedded videos on this page.
+Eg. Searching '12 Angry Men' or 'Leonard Part 6' will show movie trailer(s). Leonard part 5 has 2 movie trailers, while 12 angry men has 1 just for testing purposes. You are able to browse, serach, and view embedded videos on this page.
 
 • You can also add new movie trailers. For instance, try adding a new movie trailer with this link and the movie name '12 angry men' https://www.youtube.com/embed/_13J_9B5jEk.
 
-• When you search for movie trailers for '12 angry men' again, you will see there is 2 trailers instead of 1. If you try and add a link for a movie that doesn't exist, it won't do anything. Also, if you try to add a bad link for a movie that does exist, it will throw an error. Eg. typing "12 angry men" and "asdf" for the movie link.
+• When you search for movie trailers for '12 angry men' again, you will see there is 2 trailers instead of 1. 
+
+• If you try and add a trailer for a movie that doesn't exist, it won't do anything. 
+
+• If you try to add a bad link for a movie that does exist, it will throw an error. Eg. typing "12 angry men" and "asdf" for the movie link.
 

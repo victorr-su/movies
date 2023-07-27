@@ -90,18 +90,18 @@ app.post('/api/search', (req, res) => {
 	const values = [];
   
 	if (movieTitle) {
-	  sql += 'AND M.id IN (SELECT id FROM movies WHERE name LIKE ?) ';
-	  values.push('%' + movieTitle + '%');
+	  sql += 'AND M.id IN (SELECT id FROM movies WHERE name = ?) ';
+	  values.push(movieTitle);
 	}
   
 	if (actorName) {
-	  sql += 'AND CONCAT(A.first_name, " ", A.last_name) LIKE ? ';
-	  values.push('%' + actorName + '%');
+	  sql += 'AND CONCAT(A.first_name, " ", A.last_name) = ? ';
+	  values.push(actorName);
 	}
   
 	if (directorName) {
-	  sql += 'AND CONCAT(D.first_name, " ", D.last_name) LIKE ? ';
-	  values.push('%' + directorName + '%');
+	  sql += 'AND CONCAT(D.first_name, " ", D.last_name) = ? ';
+	  values.push(directorName );
 	}
   
 	sql += 'GROUP BY M.name';

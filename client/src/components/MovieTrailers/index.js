@@ -134,7 +134,7 @@ const MyPage = () => {
         >
           Add Movie Trailer
         </Button>
-        <Typography variant='p' sx={{color: 'red', display: addTrailerError ? 'block' : 'none'}}> Error with the form</Typography>
+        <Typography variant='p' sx={{color: 'red', display: addTrailerError ? 'block' : 'none'}}> There is an error with the form</Typography>
       </Grid>
     </Container>
   );

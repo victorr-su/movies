@@ -122,7 +122,7 @@ app.post('/api/trailer', (req,res)=>{
 	let sql = 'SELECT MT.trailer_link as link FROM movie_trailers MT ' +
 	'LEFT JOIN movies M ON M.id = MT.movie_ID ' +
 	'WHERE M.id IN (SELECT id FROM movies WHERE name LIKE ?)';
-	let values = [movieTitle ];
+	let values = [movieTitle];
 
 	connection.query(sql, values, (error, results) =>{
 		if(error){
@@ -133,6 +133,44 @@ app.post('/api/trailer', (req,res)=>{
 	})
 
 })
+
+//Add new movie trailer
+app.post('/api/addTrailer', (req, res) => {
+	const connection = mysql.createConnection(config);
+	const { addMovieTitle, addMovieLink } = req.body;
+	let sql = 'SELECT id FROM v3su.movies WHERE name LIKE ?';
+	let values = [addMovieTitle];
+  
+	connection.query(sql, values, (err, results) => {
+	  if (err) {
+		console.log(err);
+		connection.end(); // Close the connection in case of an error
+		return res.status(500).json({ error: 'Error fetching movieID.' });
+	  }
+  
+	  if (results.length === 0) {
+		connection.end(); // Close the connection when there are no results
+		return res.status(404).json({ error: 'Movie not found.' });
+	  }
+  
+	  let movieIDToAdd = results[0].id;
+  
+	  let insertSql = 'INSERT INTO v3su.movie_trailers (trailer_link, movie_ID) VALUES (?, ?)';
+	  let insertValues = [addMovieLink, movieIDToAdd];
+  
+	  connection.query(insertSql, insertValues, (err, result) => {
+		if (err) {
+		  console.log(err);
+		  connection.end(); // Close the connection in case of an error
+		  return res.status(500).json({ error: 'Error inserting data.' });
+		}
+  
+		connection.end(); // Close the connection after the insert query
+		return res.status(200).json({ message: 'Trailer link added successfully.' });
+	  });
+	});
+  });
+  
   
 
 

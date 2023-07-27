@@ -18,3 +18,8 @@
 
 Eg. Searching '12 Angry Men' or 'Leonard Part 6' will show movie trailer(s). Leonard part 5 has 2 movie trailers, while 12 angry men has 1 just for testing
 purposes. You are able to browse, serach, and view embedded videos on this page.
+
+• You can also add new movie trailers. For instance, try adding a new movie trailer with this link and the movie name '12 angry men' https://www.youtube.com/embed/_13J_9B5jEk.
+
+• When you search for movie trailers for '12 angry men' again, you will see there is 2 trailers instead of 1. The form also has error handling to make sure a use inputs values in the form. If you attempt to add a trailer for a movie that doesn't exist in the movies table, it won't display when you try to search for it.
+

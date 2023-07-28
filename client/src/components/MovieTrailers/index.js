@@ -43,13 +43,15 @@ const MyPage = () => {
     }
   }
 
-  const handleAddMovieLink = async () =>{
-    if(addMovieLink === '' || addMovieTitle === '' || !addMovieLink.includes('youtube')){
+  const handleAddMovieLink = async (res) =>{
+    if(addMovieLink === '' || addMovieTitle === '' || !addMovieLink.includes('https://www.youtube.com')){
       setAddTrailerError(true);
+      setAddMovieLink('');
+      setAddMovieTitle('');
     }else{
       setAddTrailerError(false);
       try{
-        await fetch('/api/addTrailer', {
+        const response = await fetch('/api/addTrailer', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -58,6 +60,9 @@ const MyPage = () => {
         })
         setAddMovieLink('');
         setAddMovieTitle('');
+        if(response.status !== 200){
+          setAddTrailerError(true);
+        }
       }catch(err){
         setAddMovieLink('');
         setAddMovieTitle('');

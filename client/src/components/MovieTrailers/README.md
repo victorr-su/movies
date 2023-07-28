@@ -14,11 +14,11 @@
 
 Eg. Searching '12 Angry Men' or 'Leonard Part 6' will show movie trailer(s). Leonard part 5 has 2 movie trailers, while 12 angry men has 1 just for testing purposes. You are able to browse, serach, and view embedded videos on this page.
 
-• You can also add new movie trailers. For instance, try adding a new movie trailer with this link and the movie name '12 angry men' https://www.youtube.com/embed/_13J_9B5jEk.
+• You can also add new movie trailers. For instance, try adding a new movie trailer with this link and the movie name '12 angry men' https://www.youtube.com/embed/_13J_9B5jEk. This will work for any existing movie in the DB as long as you use a valid youtube url
 
 • When you search for movie trailers for '12 angry men' again, you will see there is 2 trailers instead of 1. 
 
-• If you try and add a trailer for a movie that doesn't exist, it won't do anything. 
+• If you try and add a trailer for a movie that doesn't exist, it will throw an error.
 
-• If you try to add a bad link for a movie that does exist, it will throw an error. Eg. typing "12 angry men" and "asdf" for the movie link.
+• If you try to add a bad link for a movie that does exist, it will throw an error. Eg. typing "12 angry men" and "asdf" for the movie link. 
 
